@@ -171,7 +171,7 @@ async def message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # BOT SETUP
 # ==============================
 
-app = Application.builder().token("bot_token").build()
+app = Application.builder().token(os.getenv("bot_token")).build()
 
 app.add_handler(CommandHandler("start", start))
 
