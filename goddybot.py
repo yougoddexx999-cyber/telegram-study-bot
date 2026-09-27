@@ -145,7 +145,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await query.message.reply_document(
             document=open(
-                r"C:\Users\Prompt\Downloads\C_Complete_Notes.pdf",
+                r"C:\Users\Prompt\OneDrive\Desktop\telegrambot\pdf\C_Complete_Notes.pdf",
                 "rb"
             ),
             caption="📖 C Programming Complete Notes"
@@ -153,7 +153,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         await query.message.reply_document(
             document=open(
-                r"C:\Users\Prompt\Downloads\Python_Complete_Notes.pdf",
+                r"C:\Users\Prompt\OneDrive\Desktop\telegrambot\pdf\Python_Complete_Notes.pdf",
                 "rb"
             ),
             caption="🐍 Python Complete Notes"
