@@ -8,9 +8,20 @@ from telegram.ext import (
     ContextTypes,
     filters
 )
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+class H(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b"OK")
 
+def run_server():
+    HTTPServer(("0.0.0.0", int(os.environ.get("PORT", 10000))), H).serve_forever()
+
+threading.Thread(target=run_server, daemon=True).start()
 
 # START COMMAND
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
