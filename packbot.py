@@ -60,7 +60,8 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "▶️ /start - Bot start karne ke liye\n"
         "👑 /ownersprofile - Bot owner ki information\n"
         "🗑️ /erase - Apna bot data erase karne ke liye\n"
-        "❓ /help - Bot ke features dekhne ke liye\n\n"
+        "❓ /help - Bot ke features dekhne ke liye\n"
+        "📚 /resources - Resources lene ke liye\n\n"
 
         "🔑 SPECIAL KEYWORD\n"
         "━━━━━━━━━━━━━━━━━━\n"
@@ -165,6 +166,28 @@ async def special_keyword(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 # =========================================================
+# RESOURCES COMMAND
+# =========================================================
+
+async def resources(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    keyboard = [
+        [
+            InlineKeyboardButton(
+                "❤ Love me",
+                url="https://www.codewithharry.com/notes"
+            )
+        ]
+    ]
+
+    await update.message.reply_text(
+        "🎥 Goddy pe bharosa karo, ek click karo\n\n"
+        "Neeche link select karo 👇",
+        reply_markup=InlineKeyboardMarkup(keyboard)
+    )
+
+
+# =========================================================
 # SERVER
 # =========================================================
 
@@ -191,19 +214,36 @@ threading.Thread(target=run_server, daemon=True).start()
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
+    name = update.effective_user.first_name
+
+    text = f"""<b>⚡️ SYSTEM ONLINE ⚡️</b>
+
+<pre>
+┌──[ GODDEX_ERA@terminal ]
+│
+├─ 🔓 Access Granted
+├─ 👤 User  : {name}
+├─ 👑 Owner : Goddex
+├─ 📡 Channel : Goddex Era
+└─ 🟢 Status : Connected
+</pre>
+
+<b>💀 Welcome to the matrix, {name}.</b>
+
+<code>$ initializing bot...  [██████████] 100%</code>
+
+🚀 Tap below to continue
+🔥 <i>Powered by Goddex Era</i> 🔥"""
+
     keyboard = [
-        [
-            InlineKeyboardButton(
-                "🤍 All resources are here",
-                callback_data="all_resources"
-            )
-        ]
+        [InlineKeyboardButton("📡 Join Channel", url="https://t.me/goddyschannel")],
+        [InlineKeyboardButton("👑 Contact Owner", url="t.me/Imgodex")],
     ]
 
     await update.message.reply_text(
-        "💗💖 Goddy ke bot mein aapka swagat hai!\n\n"
-        "Aapko kya chahiye? Neeche select karo 👇",
-        reply_markup=InlineKeyboardMarkup(keyboard)
+        text,
+        parse_mode="HTML",
+        reply_markup=InlineKeyboardMarkup(keyboard),
     )
 
 
@@ -245,6 +285,7 @@ app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("ownersprofile", ownersprofile))
 app.add_handler(CommandHandler("help", help_command))
 app.add_handler(CommandHandler("erase", erase))
+app.add_handler(CommandHandler("resources", resources))
 
 app.add_handler(CallbackQueryHandler(erase_button, pattern="^erase_"))
 app.add_handler(CallbackQueryHandler(button))
