@@ -707,15 +707,17 @@ IMPORTANT USER MEMORY:
         # SEND RESPONSE
         # -------------------------------------------------
 
-        await update.message.reply_text(reply)
+    try:
+       ...
+       await update.message.reply_text(reply)
 
-   except Exception as e:
-    print("OPENAI ERROR:", e)
-    await update.message.reply_text(
-        f"AI Error: {e}"
-    )
+    except Exception as e:
         
+        print("AI ERROR:", e)
 
+        await update.message.reply_text(
+           f"AI Error: {e}"
+        )
 
 # =========================================================
 # SETTINGS COMMAND
