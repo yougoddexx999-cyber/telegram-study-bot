@@ -709,13 +709,12 @@ IMPORTANT USER MEMORY:
 
         await update.message.reply_text(reply)
 
-    except Exception as e:
-
-        print("AI ERROR:", e)
-
-        await update.message.reply_text(
-            "Oops 😅 AI se response lene mein problem aa gayi."
-        )
+   except Exception as e:
+    print("OPENAI ERROR:", e)
+    await update.message.reply_text(
+        f"AI Error: {e}"
+    )
+        
 
 
 # =========================================================
